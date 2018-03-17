@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="blog-post">
+            {% for post in posts reversed %}
+              <h2 class="blog-post-title"><a href="{% url 'post_detail' pk=post.pk %}">{{post.titles}}</a></h2>
+                <p class="blog-post-meta">{{post.published_date}} by <a href="#">{{ post.author }}</a></p>
+                <p>{{post.text | linebreaksbr}}</p>
+                  {% if post.image %}
+                    <img src="{{ STATIC_URL }}{{ post.image.url }}" />
+                  {% endif %}
+            <hr>
+            {%endfor%}
+ </div>
+{% endblock %}
+
+
+
+
